@@ -1,5 +1,6 @@
-import 'package:shopex/main.dart';
+
 import 'package:flutter/material.dart';
+import 'package:shopex/userScreen/userBottom.dart';
 
 class success extends StatefulWidget {
   const success({super.key});
@@ -11,7 +12,6 @@ class success extends StatefulWidget {
 class _successState extends State<success> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     succes();
   }

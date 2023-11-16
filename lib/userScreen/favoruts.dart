@@ -3,7 +3,6 @@ import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/widgets/customeproduct.dart';
 import 'package:shopex/wishlist/wish.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Color colorss = Colors.red;

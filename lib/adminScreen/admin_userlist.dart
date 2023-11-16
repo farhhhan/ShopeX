@@ -1,3 +1,4 @@
+import 'package:shopex/adminScreen/adminpd.dart';
 import 'package:shopex/admindb/dbfunc.dart';
 import 'package:shopex/user_logindb/userlogin.dart';
 import 'package:shopex/widgets/custometext.dart';
@@ -14,7 +15,6 @@ class admin_users extends StatefulWidget {
 class _admin_usersState extends State<admin_users> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getall2();
   }
@@ -88,10 +88,18 @@ class _admin_usersState extends State<admin_users> {
                         final userss = uselist[index];
                         return ListTile(
                           onTap: () {
-                            print(userss.name);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => adminprofile(
+                                          imagepath: userss.image!,
+                                          username: userss.name,
+                                          mail: userss.email,
+                                          number: userss.number,
+                                        )));
                           },
                           title: customeText(
-                            texts: userss.name ?? 'halo',
+                            texts: userss.name,
                           ),
                           subtitle: customeText(texts: userss.email),
                           leading: IconButton(

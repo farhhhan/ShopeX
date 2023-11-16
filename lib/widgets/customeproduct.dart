@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:shopex/userScreen/favoruts.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/wishlist/wish.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +29,6 @@ class customeproduct extends StatefulWidget {
 class _customeproductState extends State<customeproduct> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

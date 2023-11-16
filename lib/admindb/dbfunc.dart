@@ -1,4 +1,3 @@
-import 'package:shopex/admindb/addproduct.dart';
 import 'package:shopex/admindb/product.dart';
 import 'package:shopex/user_logindb/userlogin.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +37,7 @@ class dbhelper {
     final save = await Hive.openBox<Product>(dbname);
     productlist.value.clear();
     productlist.value.addAll(save.values);
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
     productlist.notifyListeners();
   }
 }

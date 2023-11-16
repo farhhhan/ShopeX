@@ -1,13 +1,12 @@
 import 'package:shopex/cart/cart.dart';
+import 'package:shopex/cart/cartaddress.dart';
 import 'package:shopex/cart/cartdbHelper.dart';
-import 'package:shopex/cart/paymentss.dart';
-import 'package:shopex/orderfull/order.dart';
-import 'package:shopex/userScreen/addressScreen.dart';
+import 'package:shopex/userScreen/addressscreen.dart';
 import 'package:shopex/widgets/customecart.dart';
 import 'package:shopex/widgets/customeicons.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+
 
 carthHelper chelp = carthHelper();
 late double totals;
@@ -54,7 +53,6 @@ class _cartscreensState extends State<cartscreens> {
                       );
                     }
                     final Cart = cartist[index];
-                    final count = cartist.length;
                     return Card(
                       elevation: 10,
                       child: Column(
@@ -224,7 +222,7 @@ class _cartscreensState extends State<cartscreens> {
                         final qnty = item.quantity;
 
                         totalPrice += price * qnty!;
-                        totals = totalPrice!;
+                        totals = totalPrice;
                       }
                       return customeText(
                         texts: '₹${totalPrice.toStringAsFixed(2)}',
@@ -237,12 +235,17 @@ class _cartscreensState extends State<cartscreens> {
                   ElevatedButton(
                     onPressed: () {
                       if (totals > 0 && cartlist.value.isNotEmpty)
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //   builder: (context) => CartPaymentScreen(
+                        //     index: 0,
+                        //     totelPrice: totals,
+                        //   ),
+                        // ));
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => CartPaymentScreen(
-                            index: 0,
-                            totelPrice: totals,
-                          ),
-                        ));
+                            builder: (context) => cartAddress(
+                                  index: 0,
+                                  totelPrice: totals,
+                                )));
                     },
                     child: customeText(texts: 'Place Order'),
                     style: ButtonStyle(

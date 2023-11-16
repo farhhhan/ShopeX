@@ -1,30 +1,25 @@
 import 'package:shopex/address/address.dart';
 import 'package:shopex/address/addresshelper.dart';
+import 'package:shopex/cart/paymentss.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/address/addadresscreen.dart';
-import 'package:shopex/userScreen/adressfillscreen.dart';
 import 'package:shopex/widgets/customeicons.dart';
 import 'package:flutter/material.dart';
 
-class addresscreen extends StatefulWidget {
-  addresscreen(
-      {required this.name,
-      required this.colorss,
-      required this.images,
-      required this.price,
-      required this.count,
-      super.key});
-  final name;
-  final images;
-  final colorss;
-  final price;
-  final count;
+class cartAddress extends StatefulWidget {
+  final dynamic totelPrice;
+  final int index;
+  cartAddress({
+    super.key,
+    required this.index,
+    required this.totelPrice,
+  });
 
   @override
-  State<addresscreen> createState() => _addresscreenState();
+  State<cartAddress> createState() => _cartAddressState();
 }
 
-class _addresscreenState extends State<addresscreen> {
+class _cartAddressState extends State<cartAddress> {
   @override
   void initState() {
     super.initState();
@@ -123,22 +118,14 @@ class _addresscreenState extends State<addresscreen> {
                       elevation: 10,
                       child: ListTile(
                         onTap: () {
+                          print(addres);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => addfillscreen(
-                                  imagePath: widget.images,
-                                  name: widget.name,
-                                  price: widget.price,
-                                  cate: widget.colorss,
-                                  count: widget.count.toString(),
-                                  address: addres.address,
-                                  city: addres.city,
-                                  pin: addres.pincode,
-                                  user: addres.usrname,
-                                  numb: addres.number,
-                                ),
-                              ));
+                                  builder: (context) => CartPaymentScreen(
+                                      address: addres,
+                                      index: index,
+                                      totelPrice: widget.totelPrice)));
                         },
                         trailing: IconButton(
                             onPressed: () {

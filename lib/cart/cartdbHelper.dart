@@ -33,6 +33,7 @@ class carthHelper {
     final save = await Hive.openBox<Cart>('cart');
     cartlist.value.clear();
     cartlist.value.addAll(save.values);
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
     cartlist.notifyListeners();
   }
 
@@ -43,6 +44,7 @@ class carthHelper {
       int index = cartlist.value.indexWhere((element) => element.id == id);
       if (index != -1) {
         cartlist.value[index] = value;
+        // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
         cartlist.notifyListeners();
       }
     }

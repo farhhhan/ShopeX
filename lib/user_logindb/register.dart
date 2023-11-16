@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:shopex/admindb/dbfunc.dart';
 import 'package:shopex/user_logindb/userlogin.dart';
 import 'package:shopex/widgets/custometext.dart';
@@ -18,6 +21,8 @@ class _registerscreenState extends State<registerscreen> {
       RegExp(r'^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$')
           .hasMatch(input);
   bool isEmail(String input) => EmailValidator.validate(input);
+  String? _selectedImage;
+  final picker = ImagePicker();
   final _RegisterKey = GlobalKey<FormState>();
   TextEditingController usernamecontroller = TextEditingController();
   TextEditingController passcontroller = TextEditingController();
@@ -32,14 +37,26 @@ class _registerscreenState extends State<registerscreen> {
           elevation: 20,
           child: Container(
             width: 360,
-            height: 400,
+            height: 600,
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Form(
                 key: _RegisterKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: ListView(
                   children: [
+                    InkWell(
+                      onTap: _selectImage1,
+                      child: CircleAvatar(
+                        radius: 90,
+                        backgroundImage: _selectedImage != null
+                            ? FileImage(File(_selectedImage!))
+                            : null,
+                        child: _selectedImage == null
+                            ? Image.asset('images/prf.jpeg')
+                            : null,
+                      ),
+                    ),
+                    SizedBox(height: 16),
                     TextFormField(
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -165,18 +182,41 @@ class _registerscreenState extends State<registerscreen> {
                               Color.fromRGBO(58, 175, 169, 1),
                             )),
                         onPressed: () {
-                          if (_RegisterKey.currentState!.validate()) {
-                            signup(
-                                mailcontroller.text,
-                                passcontroller.text,
-                                context,
-                                usernamecontroller.text,
-                                numcontroller.text);
-                            _RegisterKey.currentState!.save();
-                            usernamecontroller.text = '';
-                            mailcontroller.text = '';
-                            passcontroller.text = '';
-                            numcontroller.text = '';
+                          if (_selectedImage != null) {
+                            if (_RegisterKey.currentState!.validate()) {
+                              signup(
+                                  mailcontroller.text,
+                                  passcontroller.text,
+                                  context,
+                                  usernamecontroller.text,
+                                  numcontroller.text,
+                                  _selectedImage!);
+                              _RegisterKey.currentState!.save();
+                              usernamecontroller.text = '';
+                              mailcontroller.text = '';
+                              passcontroller.text = '';
+                              numcontroller.text = '';
+                              _selectedImage = null;
+                              setState(() {});
+                            }
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: const Text('Alert'),
+                                  content: const Text('Please Select Image'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
                           }
                         },
                         child: Padding(
@@ -193,8 +233,18 @@ class _registerscreenState extends State<registerscreen> {
     );
   }
 
+  void _selectImage1() async {
+    final selectedimg1 =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (selectedimg1 != null) {
+      setState(() {
+        _selectedImage = selectedimg1.path;
+      });
+    }
+  }
+
   void signup(String email, String password, BuildContext context, String name,
-      String number) async {
+      String number, String imgpath) async {
     // await Hive.initFlutter(); // Initialize Hive
     await Hive.openBox<User>('users'); // Open the Hive box for users
 
@@ -237,8 +287,13 @@ class _registerscreenState extends State<registerscreen> {
           },
         );
       } else {
-        final user =
-            User(email: email, password: password, name: name, number: number);
+        final user = User(
+            image: imgpath,
+            email: email,
+            password: password,
+            name: name,
+            number: number,
+            id: -1);
         usersBox.add(user);
         showDialog(
           context: context,

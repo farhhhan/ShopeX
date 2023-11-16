@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package ="com.example.shopex">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package ="com.box.shopex">
     <application
         android:label="shopex"
         android:name="${applicationName}"

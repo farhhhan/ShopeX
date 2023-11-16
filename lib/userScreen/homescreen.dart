@@ -1,5 +1,7 @@
-import 'dart:io';
+
+
 import 'package:shopex/userScreen/Detialsscreen.dart';
+
 import 'package:shopex/widgets/customeproduct.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +30,9 @@ class _homesState extends State<homes> {
 
   @override
   void initState() {
-    super.initState();
     dbh.getall();
+    super.initState();
   }
-
-  // wishHelper whp = wishHelper();
 
   List imagelist = [
     {'id': 1, 'imagepath': 'images/bagh.png'}, // Update with file path
@@ -142,9 +142,7 @@ class _homesState extends State<homes> {
                   itemCount: adminlist.length,
                   itemBuilder: (context, index) {
                     final product = adminlist[index];
-                    final img = product.image;
                     // ignore: unnecessary_null_comparison
-                    final imageready = img != null ? File(img) : null;
                     return InkWell(
                       onTap: () {
                         showDatas(

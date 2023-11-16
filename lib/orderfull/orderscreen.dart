@@ -6,7 +6,7 @@ import 'package:shopex/userScreen/orderDetials.dart';
 import 'package:shopex/widgets/customecart.dart';
 import 'package:shopex/widgets/customeicons.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+
 import 'package:hive_flutter/adapters.dart';
 
 class orderscreen extends StatefulWidget {

@@ -1,3 +1,5 @@
+
+import 'package:shopex/address/address.dart';
 import 'package:shopex/cart/cart.dart';
 import 'package:shopex/cart/cartdbHelper.dart';
 import 'package:shopex/cart/cartorderfun.dart';
@@ -7,13 +9,16 @@ import 'package:shopex/userScreen/succescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
+// ignore: must_be_immutable
 class CartPaymBottom extends StatelessWidget {
-  const CartPaymBottom({
+  CartPaymBottom({
+    required this.address,
     super.key,
     required this.allow,
     required this.widget,
     required this.groupValue,
   });
+  Address? address;
 
   final bool? allow;
   final CartPaymentScreen widget;
@@ -53,6 +58,11 @@ class CartPaymBottom extends StatelessWidget {
                       for (var i = 0; i < cardDb.length; i++) {
                         final data = cartList[i];
                         final order = OrderhistoryModel(
+                            address: address!.address,
+                            city: address!.city,
+                            number: address!.number,
+                            pincode: address!.pincode,
+                            usrname: address!.usrname,
                             image: data.image!,
                             title: data.name,
                             price: num.parse(data.price),

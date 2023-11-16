@@ -64,6 +64,7 @@ class _ProductListingPageState extends State<ProductListingPage> {
                     SlidableAction(
                         backgroundColor: Colors.green,
                         label: 'Edit',
+                        // ignore: deprecated_member_use
                         icon: FontAwesomeIcons.edit,
                         autoClose: true,
                         onPressed: (context) {
@@ -90,6 +91,7 @@ class _ProductListingPageState extends State<ProductListingPage> {
                           child: Container(
                             width: 149,
                             height: 201,
+                            // ignore: unnecessary_null_comparison
                             child: imagePath != null
                                 ? Image.file(File(
                                     imagePath)) // Display image from file path

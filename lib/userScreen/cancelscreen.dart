@@ -1,7 +1,6 @@
 import 'package:shopex/orderfull/order.dart';
+import 'package:shopex/userScreen/userBottom.dart';
 import 'package:shopex/widgets/custometext.dart';
-import 'package:shopex/main.dart';
-import 'package:shopex/widgets/customebar.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 

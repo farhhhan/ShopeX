@@ -1,10 +1,7 @@
 import 'package:shopex/address/address.dart';
 import 'package:shopex/address/addresshelper.dart';
 import 'package:shopex/widgets/custometext.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 class addadress extends StatefulWidget {
   const addadress({super.key});

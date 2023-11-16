@@ -1,22 +1,20 @@
+
 import 'package:shopex/address/address.dart';
 import 'package:shopex/cart/cart.dart';
-import 'package:shopex/cart/carts.dart';
+
 import 'package:shopex/cart/order_cart.dart';
 import 'package:shopex/orderfull/order.dart';
 import 'package:shopex/user_logindb/userlogin.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/admindb/product.dart';
-import 'package:shopex/userScreen/accountscreen.dart';
 import 'package:shopex/userScreen/categoryscreen.dart';
 import 'package:shopex/userScreen/homescreen.dart';
-import 'package:shopex/orderfull/orderscreen.dart';
 import 'package:shopex/userScreen/searchscreen.dart';
 import 'package:shopex/splash.dart';
 import 'package:shopex/widgets/customeicons.dart';
 import 'package:shopex/wishlist/wish.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive/hive.dart';
+
 import 'package:hive_flutter/adapters.dart';
 
 const SAVE_KEY = 'userlogin';
@@ -78,6 +76,7 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   @override
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
         length: 2,
@@ -86,7 +85,9 @@ class _homeScreenState extends State<homeScreen> {
             leading: Padding(
               padding: const EdgeInsets.only(left: 5),
               child: CircleAvatar(
-                backgroundImage: AssetImage('images/logox.jpg'),
+                child: Image.asset(
+                  'images/logox.jpg',
+                ),
               ),
             ),
             title: Column(
@@ -94,8 +95,8 @@ class _homeScreenState extends State<homeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 customeText(
-                  texts: widget.name ?? 'User',
-                  textcolor: Colors.black,
+                  texts: 'ShopeX',
+                  textcolor: const Color.fromARGB(255, 135, 129, 129),
                   textsize: 20,
                   textfam: 'Inter',
                   textweight: FontWeight.w700,
@@ -145,68 +146,5 @@ class _homeScreenState extends State<homeScreen> {
           ),
           body: TabBarView(children: [homes(), category()]),
         ));
-  }
-}
-
-class MyBottam extends StatefulWidget {
-  MyBottam({this.name, super.key});
-  final name;
-
-  @override
-  State<MyBottam> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyBottam> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _openBox();
-  }
-
-  late Box<Order> orderBox = Hive.box<Order>('order');
-  Future<void> _openBox() async {
-    orderBox = await Hive.openBox<Order>('order');
-  }
-
-  String? val = 'one';
-  var indx = 0;
-  List Screen = [homeScreen(), orderscreen(), cartsmain(), accountscreen()];
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.blue,
-          backgroundColor: Colors.white,
-          unselectedItemColor: Colors.black54,
-          showSelectedLabels: true,
-          iconSize: 30,
-          items: [
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.home),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.listUl),
-              label: "Order",
-            ),
-            BottomNavigationBarItem(
-              icon: FaIcon(FontAwesomeIcons.cartArrowDown),
-              label: "Cart",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: "Account",
-            ),
-          ],
-          currentIndex: indx,
-          onTap: (int index) {
-            setState(() {
-              indx = index;
-            });
-          },
-        ),
-        body: Screen.elementAt(indx));
   }
 }

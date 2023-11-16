@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:shopex/admindb/dbfunc.dart';
 import 'package:shopex/admindb/product.dart';
@@ -209,12 +208,12 @@ class _ProductEditingPageState extends State<ProductEditingPage> {
   }
 
   Future<void> _updateProduct() async {
-    final newlist = productlist.value;
+  //  final newlist = productlist.value;
     final updateBox = await Hive.openBox<Product>(dbname);
 
     // Update the product in Hive
     await updateBox.put(widget.id, widget.product);
-    newlist[widget.index] = widget.product;
+    // newlist[widget.index] = widget.product;
     // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
     productlist.notifyListeners();
   }

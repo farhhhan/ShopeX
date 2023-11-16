@@ -1,17 +1,19 @@
+
 import 'package:shopex/cart/paybottom.dart';
-import 'package:shopex/widgets/custometext.dart';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class CartPaymentScreen extends StatefulWidget {
   final dynamic totelPrice;
   final int index;
-  const CartPaymentScreen({
+  CartPaymentScreen({
+    required this.address,
     super.key,
     required this.index,
     required this.totelPrice,
   });
-
+  final address;
   @override
   State<CartPaymentScreen> createState() => _CartPaymentScreenState();
 }
@@ -19,7 +21,6 @@ class CartPaymentScreen extends StatefulWidget {
 class _CartPaymentScreenState extends State<CartPaymentScreen> {
   String method = 'val';
   int currentIndex = 0;
-  final _couponController = TextEditingController();
   CarouselController carouselController = CarouselController();
   String groupValue = 'Yes';
   bool? allow = false;
@@ -106,7 +107,12 @@ class _CartPaymentScreenState extends State<CartPaymentScreen> {
 
           const Divider(thickness: 10),
           // CartPayDelCard(widget: widget, allow: allow),
-          CartPaymBottom(allow: allow, widget: widget, groupValue: groupValue),
+          CartPaymBottom(
+            address: widget.address,
+            allow: allow,
+            widget: widget,
+            groupValue: groupValue,
+          ),
         ],
       ),
     );

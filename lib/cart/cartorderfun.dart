@@ -14,7 +14,12 @@ class OrderHistory extends ChangeNotifier {
     await orderDB.put(
       id,
       OrderhistoryModel(
-          image: orderhistory!.image,
+          address: orderhistory!.address,
+          city: orderhistory.city,
+          number: orderhistory.number,
+          image: orderhistory.image,
+          pincode: orderhistory.pincode,
+          usrname: orderhistory.usrname,
           title: orderhistory.title,
           price: orderhistory.price,
           cate: orderhistory.cate,

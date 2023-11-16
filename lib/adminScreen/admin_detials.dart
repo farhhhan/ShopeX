@@ -2,7 +2,6 @@ import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/widgets/customecart.dart';
 import 'package:shopex/widgets/customeicons.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class admin_orderdetials extends StatefulWidget {
   admin_orderdetials(

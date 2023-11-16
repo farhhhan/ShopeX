@@ -14,12 +14,32 @@ class OrderhistoryModel {
 
   @HiveField(4)
   String cate;
-  
+
   @HiveField(5)
   double? qnty;
 
+  @HiveField(6)
+  String? address;
+
+  @HiveField(7)
+  String? city;
+
+  @HiveField(8)
+  String? pincode;
+
+  @HiveField(9)
+  String? number;
+
+  @HiveField(10)
+  String? usrname;
+
   OrderhistoryModel(
-      {required this.image,
+      {required this.address,
+      required this.city,
+      required this.number,
+      required this.pincode,
+      required this.usrname,
+      required this.image,
       required this.title,
       required this.price,
       this.id,

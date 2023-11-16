@@ -1,11 +1,9 @@
-import 'dart:io';
 import 'package:shopex/admindb/dbfunc.dart';
 import 'package:shopex/admindb/product.dart';
 import 'package:shopex/userScreen/Detialsscreen.dart';
 import 'package:shopex/widgets/customebar.dart';
 import 'package:shopex/widgets/customeproduct.dart';
 import 'package:shopex/widgets/custometext.dart';
-import 'package:shopex/wishlist/wish.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -43,11 +41,16 @@ class _searchscreenState extends State<searchscreen> {
               child: TextField(
                 controller: searchController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  hintText: 'Search Here',
-                ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    hintText: 'Search Here',
+                    suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {});
+                          searchController.clear();
+                        },
+                        icon: Icon(Icons.close))),
                 onChanged: (value) {
                   searchProducts(value);
                 },
@@ -71,8 +74,7 @@ class _searchscreenState extends State<searchscreen> {
                     ),
                     itemBuilder: (context, index) {
                       final product = adminlist[index];
-                      final imagePath =
-                          product.image; // Updated image path as a File
+// Updated image path as a File
                       if (productlist.value.isEmpty) {
                         setState(() {});
                         return Center(

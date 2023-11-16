@@ -2,15 +2,14 @@ import 'package:shopex/adminScreen/admin_orderlist.dart';
 import 'package:shopex/adminScreen/admin_userlist.dart';
 import 'package:shopex/admindb/dbfunc.dart';
 import 'package:shopex/admindb/addproduct.dart';
-import 'package:shopex/admindb/product.dart';
+
 import 'package:shopex/admindb/product_detials.dart';
-import 'package:shopex/orderfull/order.dart';
-import 'package:shopex/user_logindb/userlogin.dart';
+
 import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/user_logindb/loginscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive/hive.dart';
+
 
 // late Box<Order> orderBox = Hive.box<Order>('order');
 // late Box<Product> pdlist = Hive.box<Product>(dbname);
@@ -385,7 +384,7 @@ class _HomeScreenState extends State<admin_home> {
                               ]),
                               Padding(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child: customeText(texts: 'Producst List')),
+                                  child: customeText(texts: 'Product List')),
                             ],
                           ),
                         ),

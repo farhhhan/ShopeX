@@ -17,6 +17,11 @@ class OrderhistoryModelAdapter extends TypeAdapter<OrderhistoryModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return OrderhistoryModel(
+      address: fields[6] as String?,
+      city: fields[7] as String?,
+      number: fields[9] as String?,
+      pincode: fields[8] as String?,
+      usrname: fields[10] as String?,
       image: fields[1] as String,
       title: fields[2] as String,
       price: fields[3] as num,
@@ -29,7 +34,7 @@ class OrderhistoryModelAdapter extends TypeAdapter<OrderhistoryModel> {
   @override
   void write(BinaryWriter writer, OrderhistoryModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +46,17 @@ class OrderhistoryModelAdapter extends TypeAdapter<OrderhistoryModel> {
       ..writeByte(4)
       ..write(obj.cate)
       ..writeByte(5)
-      ..write(obj.qnty);
+      ..write(obj.qnty)
+      ..writeByte(6)
+      ..write(obj.address)
+      ..writeByte(7)
+      ..write(obj.city)
+      ..writeByte(8)
+      ..write(obj.pincode)
+      ..writeByte(9)
+      ..write(obj.number)
+      ..writeByte(10)
+      ..write(obj.usrname);
   }
 
   @override

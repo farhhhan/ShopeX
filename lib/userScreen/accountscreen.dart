@@ -1,6 +1,7 @@
-import 'package:shopex/userScreen/appinfo.dart';
+
 import 'package:shopex/userScreen/privacy.dart';
 import 'package:shopex/userScreen/terms.dart';
+import 'package:shopex/user_logindb/userlogin.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/main.dart';
 import 'package:shopex/userScreen/favoruts.dart';
@@ -22,7 +23,7 @@ class accountscreen extends StatefulWidget {
 
 class _accountscreenState extends State<accountscreen> {
   late Box<wishlist> wishBox = Hive.box<wishlist>('wish');
-  // wishHelper whp = wishHelper();
+  late Box<User> userBox = Hive.box<User>('users');
 
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _accountscreenState extends State<accountscreen> {
 
   Future<void> _openBox() async {
     wishBox = await Hive.openBox('wish');
+    userBox = await Hive.openBox('users');
   }
 
   final Uri _shopexprivacy = Uri.parse(

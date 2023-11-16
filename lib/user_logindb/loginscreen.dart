@@ -1,4 +1,5 @@
 import 'package:shopex/adminScreen/admin_bottom.dart';
+import 'package:shopex/userScreen/userBottom.dart';
 import 'package:shopex/user_logindb/userlogin.dart';
 import 'package:shopex/widgets/custometext.dart';
 import 'package:shopex/main.dart';
@@ -128,17 +129,15 @@ class _loginScreenState extends State<loginScreen> {
       }
     }
 
-    if (user != null) {
+    if (user != null || (email == 'user@gmail.com' && password == 'user')) {
       // Login successful, navigate to home page or another screen
       SharedPreferences _shared = await SharedPreferences.getInstance();
       await _shared.setBool(SAVE_KEY, true);
+      await _shared.setString('mails', email);
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-            builder: (context) => MyBottam(
-                  name: user!.name,
-                )),
+        MaterialPageRoute(builder: (context) => MyBottam()),
       );
     } else if (email == 'admin@gmail.com' && password == 'admin12') {
       Navigator.pushReplacement(
